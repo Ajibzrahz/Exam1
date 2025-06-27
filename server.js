@@ -1,7 +1,10 @@
 import express from "express"
 import mongoose from "mongoose"
-import UserRouter from "./routes/user_route.js"
 import dotenv from "dotenv"
+import cookieParser from "cookie-parser"
+import UserRouter from "./routes/user_route.js"
+import kycRouter from "./routes/kyc_router.js"
+import postRouter from "./routes/post_route.js"
 dotenv.config()
 
 const app = express()
@@ -20,4 +23,7 @@ mongoose
     })
 
 app.use(express.json());
+app.use(cookieParser())
 app.use(UserRouter)
+app.use(kycRouter)
+app.use(postRouter)
